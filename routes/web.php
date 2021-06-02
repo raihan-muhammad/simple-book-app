@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/login');
 });
 
 Auth::routes();
@@ -22,7 +22,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::group(['middleware' => 'auth'], function () {
     // Author Route
-    Route::get('/author', 'AuthorsController@index')->name('author');
+    Route::get('/author', [App\Http\Controllers\AuthorController::class, 'index'])->name('author');
     // Book Route
-    Route::get('/book', 'BooksController@index')->name('book');
+    Route::get('/book', [App\Http\Controllers\BookController::class, 'index'])->name('book');
 });
